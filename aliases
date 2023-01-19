@@ -1,9 +1,34 @@
-# Get External IP / Internet Speed
-alias myip="curl https://ipinfo.io/json" # or /ip for plain-text ip
+#!/usr/bin/env bash
+
+# exa
+type -a exa >/dev/null && alias ls='exa --icons'
+
+# ls alias
+alias l='ls -lah'
+alias ll='ls -lh'
+alias lsa='ls -lah'
+alias lsd='ls -d */'
+alias tree='ls --tree'
+
+# Always enable colored `grep` output
+# Note: `GREP_OPTIONS="--color=auto"` is deprecated, hence the alias usage.
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+# IP addresses
+alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias localip="ipconfig getifaddr en0"
+
+
+# Internet Speed
 alias speedtest="curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -"
 
 # Quickly serve the current directory as HTTP
-alias serve='ruby -run -e httpd . -p 8000' # Or python -m SimpleHTTPServer :)
+alias serve='python3 -m http.server' # Or ruby -run -e httpd . -p 8000:)
 
-# NOTE: On Q3 2021, Le Wagon decided to change the Web Dev curriculum default text editor
-alias stt="echo 'Launching VS Code instead of Sublime Text... (cf ~/.aliases)' && code ."
+# Reload the shell (i.e. invoke as a login shell)
+alias reload="exec ${SHELL} -l"
+
+# Print each PATH entry on a separate line
+alias path='echo -e ${PATH//:/\\n}'
